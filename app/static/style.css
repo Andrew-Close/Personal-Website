@@ -62,8 +62,8 @@ ul li {
     margin-bottom: 0.5em;
 }
 
-#message-input {
-    width: 30vw;
+.text-input {
+    width: 20vw;
     font-size: 0.9em;
     margin: 1em;
 }
