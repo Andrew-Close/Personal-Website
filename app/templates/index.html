@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1>Welcome!</h1>
+<p>This is my personal website. There isn't much right now, but I plan to
+add on to it in the future.</p>
+<p>In the meantime, I created a basic messaging system. Try sending messages
+for others to see!</p>
+<p>(Yes, I know you can impersonate other people by using someone else's name. I
+trust you will all be good people.)</p>
+<form method="post">
+    <input type="text" name="message" placeholder="Message" id="message-input">
+    <button type="submit" id="submit-button">Submit</button>
+</form>
+<div id="messages-container">
+    <div class="message">
+        <div class="message-info">
+            <p class="message-info-text">June 4, 2025 - Andrew</p>
+        </div>
+        <div class="message-content">
+            <p class="message-content-text">This is simply a dummy message.</p>
+        </div>
+    </div>
+    <div class="message">
+        <div class="message-info">
+            <p class="message-info-text">June 4, 2025 - Andrew</p>
+        </div>
+        <div class="message-content">
+            <p class="message-content-text">This is simply a dummy message.</p>
+        </div>
+    </div>
+    <div class="message">
+        <div class="message-info">
+            <p class="message-info-text">June 4, 2025 - Andrew</p>
+        </div>
+        <div class="message-content">
+            <p class="message-content-text">This is simply a dummy message.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

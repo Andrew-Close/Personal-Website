@@ -1,0 +1,94 @@
+html, body {
+    margin: 10px;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-family: Verdana;
+    font-weight: bold;
+    text-align: center;
+    font-size: 2em;
+}
+
+p {
+    font-family: Arial;
+    font-size: 1.2em;
+}
+
+ul li {
+    font-size: 1.1em;
+    font-family: Arial;
+    margin: 0.5em;
+}
+
+#messages-container {
+    width: 90vw;
+    border: 1px solid black;
+}
+
+.message {
+    display: flex;
+    flex-flow: row nowrap;
+    border-bottom: 1px solid #ddd;
+}
+
+.message-info {
+    width: 40%;
+    padding: 5px;
+}
+
+.message-info-text {
+    font-size: 0.9em;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.message-content {
+    width: 60%;
+    padding: 5px;
+}
+
+.message-content-text {
+    font-size: 0.9em;
+    font-family: "Times New Roman";
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+#message-input {
+    width: 30vw;
+    font-size: 0.9em;
+    margin: 1em;
+}
+
+#submit-button {
+    font-size: 1.1em;
+    margin: 1em;
+}
+
+nav {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eee;
+    margin: 10px;
+    min-width: 80px;
+    padding: 20px;
+}
+
+.nav-text {
+    text-align: center;
+    margin: 0px;
+}

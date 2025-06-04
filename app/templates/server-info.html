@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Server Info{% endblock %}
+{% block content %}
+<h1>Server Info</h1>
+<p>Here is some information about the server this app is running on:</p>
+<ul>
+    <li>This webpage is being hosted on an nginx server. The server
+    is listening on port 80 for incoming HTTP requests and on port
+    443 for incoming HTTPS requests.</li>
+    <li>The domain is certified with a wildcard SSL certificate that
+    covers all subdomains of andrewclose.dev.</li>
+    <li>I originally had the DNS settings configured to access the
+    server using its local IP address, but right now it is
+    configured to access the router's public IP address. That way,
+    anyone can access the server from anywhere.</li>
+    <li>My router does not support NAT loopback, meaning I can't
+    access the server from the local network. So, as a workaround,
+    there is a subdomain "local.andrewclose.dev" configured to point
+    to the server's local IP address. If you try to use that URL from
+    outside the local network of the server, then it won't work.</li>
+</ul>
+{% endblock %}
