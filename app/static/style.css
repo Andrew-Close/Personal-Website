@@ -91,4 +91,9 @@ nav {
 .nav-text {
     text-align: center;
     margin: 0px;
+    color: black;
+}
+
+.nav-text:active {
+    color: red;
 }

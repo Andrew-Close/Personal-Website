@@ -13,30 +13,17 @@ trust you will all be good people.)</p>
     <input type="text" name="message" placeholder="Message" class="text-input">
     <button type="submit" id="submit-button">Submit</button>
 </form>
+<form action="/" method="get"><button type="submit" style="margin: 10px;">Refresh</button></form>
 <div id="messages-container">
+    {% for message in all_messages %}
     <div class="message">
         <div class="message-info">
-            <p class="message-info-text">June 4, 2025 - Andrew</p>
+            <p class="message-info-text">{{ message.string_date }} - {{ message.sender }}</p>
         </div>
         <div class="message-content">
-            <p class="message-content-text">This is simply a dummy message.</p>
+            <p class="message-content-text">{{ message.message }}</p>
         </div>
     </div>
-    <div class="message">
-        <div class="message-info">
-            <p class="message-info-text">June 4, 2025 - Andrew</p>
-        </div>
-        <div class="message-content">
-            <p class="message-content-text">This is simply a dummy message.</p>
-        </div>
-    </div>
-    <div class="message">
-        <div class="message-info">
-            <p class="message-info-text">June 4, 2025 - Andrew</p>
-        </div>
-        <div class="message-content">
-            <p class="message-content-text">This is simply a dummy message.</p>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}
