@@ -2,3 +2,5 @@
 app/__pycache__/
 app/testing.py
 app/instance/
+instance/
+venv/

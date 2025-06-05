@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, abort
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 app = Flask(__name__)
-app.config.from_object("config")
+app.config.from_object("app.config")
 db = SQLAlchemy(app)
 
 class MessageModel(db.Model):
@@ -25,7 +26,7 @@ def index():
     elif request.method == "POST":
         message = request.form.get("message")
         sender = request.form.get("sender")
-        date = datetime.now()
+        date = datetime.now(ZoneInfo("America/New_York"))
         string_date = datetime.strftime(date, "%B %#d, %Y, %#I:%M:%S %p")
         message_model = MessageModel(message=message, sender=sender, date=date, string_date=string_date)
         db.session.add(message_model)
@@ -40,5 +41,3 @@ def index():
 @app.route("/server-info")
 def server_info():
     return render_template("server-info.html")
-
-app.run()
