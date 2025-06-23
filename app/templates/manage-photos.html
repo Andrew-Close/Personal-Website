@@ -1,0 +1,18 @@
+{% extends 'admin-base.html' %}
+{% block title %}Admin Panel{% endblock %}
+{% block content %}
+<main>
+    <h1>Admin Panel</h1>
+    <div class="admin-actions-container">
+        <div class="admin-action">
+            <button onclick="window.open('{{ url_for('admin.add_photos') }}', '_self')" class="admin-action-button">Add Photos</button>
+        </div>
+        <div class="admin-action">
+            <button class="admin-action-button">Delete Photos</button>
+        </div>
+        <div class="admin-action">
+            <button onclick="window.open('{{ url_for('admin.admin_panel') }}', '_self')" class="admin-action-button">Back</button>
+        </div>
+    </div>
+</main>
+{% endblock %}

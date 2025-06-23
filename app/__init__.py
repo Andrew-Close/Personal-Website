@@ -2,12 +2,11 @@ from flask import Flask
 from .extensions import db, login_manager
 from .auth import auth as auth_blueprint
 from .main import main as main_blueprint
+from .admin import admin as admin_blueprint
+from .constants import INSTANCE_PATH, DB_PATH
 import os
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-INSTANCE_PATH = os.path.join(BASE_DIR, "instance")
 os.makedirs(INSTANCE_PATH, exist_ok=True)
-DB_PATH = os.path.join(INSTANCE_PATH, "database.db")
 
 def create_app():
     app = Flask(__name__)
@@ -27,5 +26,6 @@ def create_app():
 
     app.register_blueprint(main_blueprint)
     app.register_blueprint(auth_blueprint)
+    app.register_blueprint(admin_blueprint)
 
     return app

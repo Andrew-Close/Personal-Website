@@ -1,0 +1,17 @@
+{% extends 'admin-base.html' %}
+{% block title %}Admin Panel{% endblock %}
+{% block content %}
+<main>
+    <h1>Admin Panel</h1>
+    <div class="image-with-controls-container">
+        <img class="big-image">
+        <div class="image-controls">
+            <form method="POST">
+                <input type="text" name="rank" placeholder="Rank">
+                <input type="text" name="location" placeholder="Location">
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

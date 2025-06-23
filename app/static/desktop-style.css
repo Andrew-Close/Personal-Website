@@ -129,4 +129,18 @@
 
     .footer-list a {
     }
+
+    .admin-actions-container {
+        width: 90%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: start;
+        border: 1px solid black;
+        padding: 20px;
+    }
+
+    .big-image {
+        width: 400px;
+        height: 400px;
+    }
 }

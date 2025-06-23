@@ -1,100 +1,102 @@
 {% extends 'base.html' %}
 {% block title %}Project{% endblock %}
 {% block content %}
-<header>
-    <h1>Projects</h1>
-    <p class="header-small-text">You can see some of my projects below. Most of them
-    are for learning purposes, but I would like to build some more practical projects
-    in the future!</p>
-</header>
-<main>
-    <section>
-        <div class="project-card">
-            <div class="project-visual">
-                    <h2 class="project-header">Fire Alarm for Neurodivergent People</h2>
+<div class="content">
+    <header>
+        <h1>Projects</h1>
+        <p class="header-small-text">You can see some of my projects below. Most of them
+        are for learning purposes, but I would like to build some more practical projects
+        in the future!</p>
+    </header>
+    <main>
+        <section>
+            <div class="project-card">
+                <div class="project-visual">
+                        <h2 class="project-header">Fire Alarm for Neurodivergent People</h2>
+                </div>
+                <div class="project-text-container">
+                    <p class="project-text">This project is the one I worked on for NSTEM (National STEM
+                    Honor Society). If you look at the commit history, you'll see that I didn't work on the
+                    accompanying web app, but rather on the code for the physical alarm itself. Going into NSTEM
+                    for my first time, I thought I would be doing primarily coding, but as it turned out, I
+                    ended up working on the hardware of the project. The thing is, I had zero knowledge about
+                    electronics, period. So, I had be flexible and push myself to learn something completely
+                    foreign to me. In the end, I built the alarm and programmed it successfully. If this project
+                    isn't a symbol of my resilience and desire to learn, then I don't know what is.</p>
+                    <button class="button" onclick="window.open('https://github.com/NSTEM-WMHS/FireSafetySystem-WebServer', '_blank')">View on GitHub</button>
+                </div>
             </div>
-            <div class="project-text-container">
-                <p class="project-text">This project is the one I worked on for NSTEM (National STEM
-                Honor Society). If you look at the commit history, you'll see that I didn't work on the
-                accompanying web app, but rather on the code for the physical alarm itself. Going into NSTEM
-                for my first time, I thought I would be doing primarily coding, but as it turned out, I
-                ended up working on the hardware of the project. The thing is, I had zero knowledge about
-                electronics, period. So, I had be flexible and push myself to learn something completely
-                foreign to me. In the end, I built the alarm and programmed it successfully. If this project
-                isn't a symbol of my resilience and desire to learn, then I don't know what is.</p>
-                <button class="button" onclick="window.open('https://github.com/NSTEM-WMHS/FireSafetySystem-WebServer', '_blank')">View on GitHub</button>
+        </section>
+        <section>
+            <div class="project-card">
+                <div class="project-visual">
+                    <h2 class="project-header">Meal Planner</h2>
+                </div>
+                <div class="project-text-container">
+                    <p class="project-text">This is a meal planer project made in Java on hyperskill.org. It helps you
+                    plan meals that you want to make for the whole week. Its functions are: add a meal to the database,
+                    show all meals in the database, plan meals for the whole week, and save a shopping list. It
+                    involves the use of PostgreSQL and DAOs.</p>
+                    <button class="button" onclick="window.open('https://github.com/Andrew-Close/Meal-Planner', '_blank')">View on GitHub</button>
+                </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="project-card">
-            <div class="project-visual">
-                <h2 class="project-header">Meal Planner</h2>
+        </section>
+        <section>
+            <div class="project-card">
+                <div class="project-visual">
+                    <h2 class="project-header">File Server</h2>
+                </div>
+                <div class="project-text-container">
+                    <p class="project-text">This is a file server project made in Java on hyperskill.org. It acts
+                    as a server that can manage files. Its functions are: get a file from the server, store a file
+                    on the server, and delete a file from the server. It involves server-client connections and
+                    HTTP requests.</p>
+                    <button class="button" onclick="window.open('https://github.com/Andrew-Close/File-Server', '_blank')">View on GitHub</button>
+                </div>
             </div>
-            <div class="project-text-container">
-                <p class="project-text">This is a meal planer project made in Java on hyperskill.org. It helps you
-                plan meals that you want to make for the whole week. Its functions are: add a meal to the database,
-                show all meals in the database, plan meals for the whole week, and save a shopping list. It
-                involves the use of PostgreSQL and DAOs.</p>
-                <button class="button" onclick="window.open('https://github.com/Andrew-Close/Meal-Planner', '_blank')">View on GitHub</button>
+        </section>
+        <section>
+            <div class="project-card">
+                <div class="project-visual">
+                    <h2 class="project-header">Web Scraper</h2>
+                </div>
+                <div class="project-text-container">
+                    <p class="project-text">This is a simple web scraper made in Python on hyperskill.org that
+                    saves all articles of a certain type in the first specified number of pages from nature.com,
+                    starting from the year 2020. It involves Beautiful Soup, JSON, and HTTP requests.</p>
+                    <button class="button" onclick="window.open('https://github.com/Andrew-Close/Web-Scraper', '_blank')">View on GitHub</button>
+                </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="project-card">
-            <div class="project-visual">
-                <h2 class="project-header">File Server</h2>
+        </section>
+        <section>
+            <div class="project-card">
+                <div class="project-visual">
+                    <h2 class="project-header">Arithmetic Exam</h2>
+                </div>
+                <div class="project-text-container">
+                    <p class="project-text">This is a math quiz project made in Python on hyperskill.org that
+                    gives the user 5 questions and saves their score in a file. Its functions are: choose a difficulty,
+                    then answer math questions based on the chosen difficulty, then choose if you'd like to save your
+                    score in a file at the end of the quiz. It involves file management, random number generation, and
+                    user input validation.</p>
+                    <button class="button" onclick="window.open('https://github.com/Andrew-Close/Arithmetic-Exam', '_blank')">View on GitHub</button>
+                </div>
             </div>
-            <div class="project-text-container">
-                <p class="project-text">This is a file server project made in Java on hyperskill.org. It acts
-                as a server that can manage files. Its functions are: get a file from the server, store a file
-                on the server, and delete a file from the server. It involves server-client connections and
-                HTTP requests.</p>
-                <button class="button" onclick="window.open('https://github.com/Andrew-Close/File-Server', '_blank')">View on GitHub</button>
+        </section>
+        <section>
+            <div class="project-card">
+                <div class="project-visual">
+                    <h2 class="project-header">Web Calendar</h2>
+                </div>
+                <div class="project-text-container">
+                    <p class="project-text">This is a calendar API project made in Flask on hyperskill.org.
+                    It allows you to view and store events. Its functions are: get all events, get an event of
+                    a certain id, get all events today, get all events within a time range, create a new event,
+                    and delete an event of a certain id. It involves REST APIs, HTTP requests, SQLite, and SQLAlchemy.</p>
+                    <button class="button" onclick="window.open('https://github.com/Andrew-Close/Python-Web-Calendar', '_blank')">View on GitHub</button>
+                </div>
             </div>
-        </div>
-    </section>
-    <section>
-        <div class="project-card">
-            <div class="project-visual">
-                <h2 class="project-header">Web Scraper</h2>
-            </div>
-            <div class="project-text-container">
-                <p class="project-text">This is a simple web scraper made in Python on hyperskill.org that
-                saves all articles of a certain type in the first specified number of pages from nature.com,
-                starting from the year 2020. It involves Beautiful Soup, JSON, and HTTP requests.</p>
-                <button class="button" onclick="window.open('https://github.com/Andrew-Close/Web-Scraper', '_blank')">View on GitHub</button>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="project-card">
-            <div class="project-visual">
-                <h2 class="project-header">Arithmetic Exam</h2>
-            </div>
-            <div class="project-text-container">
-                <p class="project-text">This is a math quiz project made in Python on hyperskill.org that
-                gives the user 5 questions and saves their score in a file. Its functions are: choose a difficulty,
-                then answer math questions based on the chosen difficulty, then choose if you'd like to save your
-                score in a file at the end of the quiz. It involves file management, random number generation, and
-                user input validation.</p>
-                <button class="button" onclick="window.open('https://github.com/Andrew-Close/Arithmetic-Exam', '_blank')">View on GitHub</button>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="project-card">
-            <div class="project-visual">
-                <h2 class="project-header">Web Calendar</h2>
-            </div>
-            <div class="project-text-container">
-                <p class="project-text">This is a calendar API project made in Flask on hyperskill.org.
-                It allows you to view and store events. Its functions are: get all events, get an event of
-                a certain id, get all events today, get all events within a time range, create a new event,
-                and delete an event of a certain id. It involves REST APIs, HTTP requests, SQLite, and SQLAlchemy.</p>
-                <button class="button" onclick="window.open('https://github.com/Andrew-Close/Python-Web-Calendar', '_blank')">View on GitHub</button>
-            </div>
-        </div>
-    </section>
-</main>
+        </section>
+    </main>
+</div>
 {% endblock %}

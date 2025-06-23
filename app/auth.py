@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import check_password_hash
 from .extensions import db
 from .models import UserModel
+from .constants import STATIC_PATH
 
 auth = Blueprint("auth", __name__)
 
@@ -16,8 +17,8 @@ def login():
         if not user or not check_password_hash(user.password, password):
             return redirect(url_for("auth.login"))
         login_user(user)
-        return redirect(url_for("main.admin_panel"))
-    return render_template("login.html")
+        return redirect(url_for("admin.admin_panel"))
+    return render_template("login.html",  static_path=STATIC_PATH)
 
 @auth.route("/logout")
 @login_required

@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<header style="border-style: none">
-    <img class="header-image" src="static/andrew-close.jpg" alt="Andrew Close">
-    <h1>Andrew Close</h1>
-    <p class="header-small-text">Hello! My name is Andrew Close. I love computer science, and I love to expand
-    my knowledge and learn new things. I am also an avid photographer. Photography is my
-    favorite hobby, and I have 5 years of experience. You can learn more about me and see some of my projects and
-    photos using the links above.</p>
-    <div class="button" onclick="location.href = '{{ url_for('main.bio') }}'">More About Me</div>
-</header>
+<div class="content">
+    <header style="border-style: none">
+        <img class="header-image" src="static/andrew-close.jpg" alt="Andrew Close">
+        <h1>Andrew Close</h1>
+        <p class="header-small-text">Hello! My name is Andrew Close. I love computer science, and I love to expand
+        my knowledge and learn new things. I am also an avid photographer. Photography is my
+        favorite hobby, and I have 5 years of experience. You can learn more about me and see some of my projects and
+        photos using the links above.</p>
+        <div class="button" onclick="location.href = '{{ url_for('main.bio') }}'">More About Me</div>
+    </header>
+</div>
 {% endblock %}
