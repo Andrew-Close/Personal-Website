@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<main>
+    <p>If you are seeing this, then the page you are trying to access is intended to be accessed only
+    by me, Andrew. You are currently trying to access an admin panel, there's nothing important there.</p>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Name" autofocus>
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+</main>
+{% endblock %}

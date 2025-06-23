@@ -10,16 +10,16 @@
 <body>
     <nav>
         <div class="nav-item">
-            <a class="nav-text" href="/">Home</a>
+            <a class="nav-text" href="{{ url_for('main.index') }}">Home</a>
         </div>
         <div class="nav-item">
-            <a class="nav-text" href="/bio">Bio</a>
+            <a class="nav-text" href="{{ url_for('main.bio') }}">Bio</a>
         </div>
         <div class="nav-item">
-            <a class="nav-text" href="/projects">Projects</a>
+            <a class="nav-text" href="{{ url_for('main.projects') }}">Projects</a>
         </div>
         <div class="nav-item">
-            <a class="nav-text" href="/portfolio">Portfolio</a>
+            <a class="nav-text" href="{{ url_for('main.portfolio') }}">Portfolio</a>
         </div>
     </nav>
     <div class="content">
