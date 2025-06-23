@@ -18,7 +18,7 @@ def login():
             return redirect(url_for("auth.login"))
         login_user(user)
         return redirect(url_for("admin.admin_panel"))
-    return render_template("login.html",  static_path=STATIC_PATH)
+    return render_template("login.html")
 
 @auth.route("/logout")
 @login_required
