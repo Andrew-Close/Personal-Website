@@ -1,8 +1,6 @@
 from flask import Flask
 from .extensions import db, login_manager
-from .auth import auth as auth_blueprint
-from .main import main as main_blueprint
-from .admin import admin as admin_blueprint
+from .blueprints import register_blueprints
 from .constants import INSTANCE_PATH, DB_PATH
 import os
 
@@ -18,14 +16,19 @@ def create_app():
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
 
-    from .models import UserModel
+    from .models import UserModel, ImageModel
 
     @login_manager.user_loader
     def load_user(user_id):
         return db.session.execute(db.select(UserModel).where(UserModel.id == user_id)).scalars().first()
 
-    app.register_blueprint(main_blueprint)
-    app.register_blueprint(auth_blueprint)
-    app.register_blueprint(admin_blueprint)
+    register_blueprints(app)
+
+    print("Before deletion")
+    with app.app_context():
+        all_images = db.session.execute(db.select(ImageModel)).scalars().all()
+        for image in all_images:
+            db.session.delete(image)
+        db.session.commit()
 
     return app

@@ -1,19 +1,45 @@
-import os.path
-
-from flask import Blueprint, render_template, request, url_for, redirect
+from flask import Blueprint, render_template, request, url_for, redirect, current_app
 from flask_login import login_user, logout_user, login_required, current_user
 from PIL import Image
 from PIL.ExifTags import TAGS
 from werkzeug.security import check_password_hash
 from .extensions import db
-from .models import UserModel
+from .models import UserModel, ImageModel, LocationModel
 from .constants import STATIC_PATH
+from .table_managers.images_manager import ImagesManager
+import os.path
+from datetime import datetime
+
+def get_all_unstored_photos():
+    image_manager = ImagesManager()
+    all_images = os.listdir("app/static/portfolio-images")
+    all_stored_images = image_manager.select_all_images()
+    for stored_image in all_stored_images:
+        for image_name in all_images:
+            if stored_image.image_name == image_name:
+                all_images.remove(stored_image.image_name)
+                break
+    all_images = sorted(all_images, key=lambda name: get_name_number(name))
+    print(all_images)
+
+    # for name in os.listdir("app/static/portfolio-images"):
+    #     exif = Image.open("app/static/portfolio-images/{}".format(name))._getexif()
+    #     for tagid in exif:
+    #         tagname = TAGS.get(tagid, tagid)
+    #         if tagname == "DateTimeOriginal":
+    #             print(exif.get(tagid))
+    #             break
+
+    return all_images
 
 admin = Blueprint("admin", __name__)
+unstored_photos = []
 
 @admin.route("/admin-panel")
 @login_required
 def admin_panel():
+    global unstored_photos
+    unstored_photos = get_all_unstored_photos()
     return render_template("admin-panel.html")
 
 @admin.route("/admin-panel/manage-photos")
@@ -21,16 +47,48 @@ def admin_panel():
 def manage_photos():
     return render_template("manage-photos.html")
 
-@admin.route("/admin-panel/manage-photos/add-photos")
+@admin.route("/admin-panel/manage-photos/add-photos", methods=["GET", "POST"])
 @login_required
 def add_photos():
-    all_images = os.listdir("app/static/portfolio-images")
-    for name in all_images:
-        exif = Image.open("app/static/portfolio-images/{}".format(name))._getexif()
+    image_name = unstored_photos[0]
+    if request.method == "POST":
+        rank = request.form.get("rank")
+        location = request.form.get("location")
+
+        location_obj = db.session.execute(db.select(LocationModel).where(LocationModel.location == location)).scalars().first()
+        if not location_obj:
+            location_obj = LocationModel(location=location)
+
         date = None
+        exif = Image.open("app/static/portfolio-images/{}".format(image_name))._getexif()
         for tagid in exif:
             tagname = TAGS.get(tagid, tagid)
             if tagname == "DateTimeOriginal":
                 date = exif.get(tagid)
                 break
-    return render_template("add-photos.html", image_name="image1.jpg")
+        if date is not None:
+            date = datetime.strptime(date, "%Y:%m:%d %H:%M:%S")
+
+        print(image_name)
+        print(rank)
+        print(date)
+        print(location_obj)
+        print(location_obj.location)
+        image = ImageModel(image_name=image_name, rank=rank, date=date, location=location_obj)
+        db.session.add(image)
+        db.session.commit()
+        unstored_photos.pop(0)
+        return redirect(url_for("admin.add_photos"))
+    return render_template("add-photos.html", image_name=image_name)
+
+def get_name_number(name):
+    starting_index = -1
+    for i in range(len(name)):
+        if name[i].isdigit():
+            if starting_index == -1:
+                starting_index = i
+        else:
+            if not starting_index == -1:
+                ending_index = i
+                return int(name[starting_index:ending_index])
+    raise Exception("Something went wrong in get_name_number")
