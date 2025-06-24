@@ -16,7 +16,7 @@ def create_app():
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
 
-    from .models import UserModel, ImageModel
+    from .models import UserModel, ImageModel, LocationModel
 
     @login_manager.user_loader
     def load_user(user_id):
@@ -24,11 +24,10 @@ def create_app():
 
     register_blueprints(app)
 
-    print("Before deletion")
     with app.app_context():
-        all_images = db.session.execute(db.select(ImageModel)).scalars().all()
-        for image in all_images:
-            db.session.delete(image)
+        all = LocationModel.query.all()
+        for thing in all:
+            db.session.delete(thing)
         db.session.commit()
 
     return app

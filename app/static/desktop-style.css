@@ -143,4 +143,25 @@
         width: 400px;
         height: 400px;
     }
+
+    .existing-locations-container {
+        display: flex;
+        flex-flow: row wrap;
+        margin: 10px;
+    }
+
+    .existing-location {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid black;
+        border-radius: 99px;
+        background-color: white;
+        padding: 5px;
+    }
+
+    .existing-location-text {
+        margin: 0;
+        font-size: 12px;
+    }
 }

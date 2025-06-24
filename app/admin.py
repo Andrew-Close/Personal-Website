@@ -20,16 +20,6 @@ def get_all_unstored_photos():
                 all_images.remove(stored_image.image_name)
                 break
     all_images = sorted(all_images, key=lambda name: get_name_number(name))
-    print(all_images)
-
-    # for name in os.listdir("app/static/portfolio-images"):
-    #     exif = Image.open("app/static/portfolio-images/{}".format(name))._getexif()
-    #     for tagid in exif:
-    #         tagname = TAGS.get(tagid, tagid)
-    #         if tagname == "DateTimeOriginal":
-    #             print(exif.get(tagid))
-    #             break
-
     return all_images
 
 admin = Blueprint("admin", __name__)
@@ -51,6 +41,7 @@ def manage_photos():
 @login_required
 def add_photos():
     image_name = unstored_photos[0]
+    all_locations = db.session.execute(db.select(LocationModel)).scalars().all()
     if request.method == "POST":
         rank = request.form.get("rank")
         location = request.form.get("location")
@@ -69,17 +60,12 @@ def add_photos():
         if date is not None:
             date = datetime.strptime(date, "%Y:%m:%d %H:%M:%S")
 
-        print(image_name)
-        print(rank)
-        print(date)
-        print(location_obj)
-        print(location_obj.location)
         image = ImageModel(image_name=image_name, rank=rank, date=date, location=location_obj)
         db.session.add(image)
         db.session.commit()
         unstored_photos.pop(0)
         return redirect(url_for("admin.add_photos"))
-    return render_template("add-photos.html", image_name=image_name)
+    return render_template("add-photos.html", image_name=image_name, locations=all_locations)
 
 def get_name_number(name):
     starting_index = -1

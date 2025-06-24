@@ -1,17 +1,52 @@
-{% extends 'admin-base.html' %}
-{% block title %}Admin Panel{% endblock %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Photos</title>
+    <link rel="stylesheet" href="/static/base-style.css">
+    <link rel="stylesheet" href="/static/desktop-style.css">
+</head>
+<body>
+<nav>
+    <div class="nav-item">
+        <a class="nav-text" href="index.html">Home</a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-text" href="bio.html">Bio</a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-text" href="projects.html">Projects</a>
+    </div>
+    <div class="nav-item">
+        <a class="nav-text" href="portfolio.html">Portfolio</a>
+    </div>
+</nav>
 <main>
     <h1>Admin Panel</h1>
     <div class="image-with-controls-container">
         <img src="/static/portfolio-images/{{ image_name }}" class="big-image">
+        <p>{{ image_name }}</p>
         <div class="image-controls">
             <form method="POST">
                 <input type="text" name="rank" placeholder="Rank">
-                <input type="text" name="location" placeholder="Location">
+                <input id="location-input" type="text" name="location" placeholder="Location">
                 <button type="submit">Add</button>
             </form>
+            <div class="existing-locations-container">
+                {% for location in locations %}
+                <div class="existing-location" onclick="fillLocationInput('{{ location.location }}')">
+                    <p class="existing-location-text">{{ location.location }}</p>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </main>
-{% endblock %}
+<script>
+    function fillLocationInput(location) {
+        document.getElementById("location-input").value = location;
+    }
+</script>
+</body>
+</html>
