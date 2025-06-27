@@ -130,6 +130,59 @@
     .footer-list a {
     }
 
+
+    .portfolio-controls-container {
+        flex-direction: row;
+        width: 90%;
+        justify-content: space-evenly;
+    }
+
+    .portfolio-control {
+        width: 50%;
+    }
+
+    .portfolio-control-button {
+        margin: 5px;
+    }
+
+    .portfolio-control-text {
+        font-size: 20px;
+    }
+
+    .dropdown {
+    }
+
+    .dropdown-item {
+        padding: 10px;
+    }
+
+    .dropdown-item:active {
+    }
+
+    .dropdown-text {
+    }
+
+    .dropdown-input {
+        width: 100px;
+    }
+
+    .subdropdown {
+    }
+
+    .subdropdown-item {
+        padding: 8px;
+    }
+
+    .subdropdown-item:active {
+    }
+
+    .subdropdown-text {
+    }
+
+    .subdropdown-input {
+        width: 100px;
+    }
+
     .admin-actions-container {
         width: 90%;
         display: flex;

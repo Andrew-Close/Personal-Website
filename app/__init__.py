@@ -16,18 +16,12 @@ def create_app():
     login_manager.login_view = "auth.login"
     login_manager.init_app(app)
 
-    from .models import UserModel, ImageModel, LocationModel
+    from .models import UserModel
 
     @login_manager.user_loader
     def load_user(user_id):
         return db.session.execute(db.select(UserModel).where(UserModel.id == user_id)).scalars().first()
 
     register_blueprints(app)
-
-    with app.app_context():
-        all = LocationModel.query.all()
-        for thing in all:
-            db.session.delete(thing)
-        db.session.commit()
 
     return app

@@ -10,49 +10,134 @@
         them. Enjoy!</p>
     </header>
     <main>
-        <p style="font-weight: bold; text-decoration: underline">Okay, actually, I haven't yet implemented the interactive portfolio. So in the meantime,
-        here are only a few of my photos that I really like.</p>
+        <form class="hidden-form" method="POST">
+            <input id="start-date-input" type="date" name="start_date">
+            <input id="end-date-input" type="date" name="end_date">
+            <input id="location-input" type="text" name="location">
+            <button id="portfolio-filter-submit" type="submit" formaction="/portfolio/set-filters">Submit</button>
+        </form>
+        <form class="hidden-form" method="POST">
+            <input id="sort-input" type="text" name="sort">
+            <button id="portfolio-sort-submit" type="submit" formaction="/portfolio/set-sort">Submit</button>
+        </form>
+        <form class="hidden-form" method="POST">
+            <button id="clear-fields-submit" type="submit" formaction="/portfolio/clear-fields">Submit</button>
+        </form>
+        <div class="portfolio-controls-container">
+            <div class="portfolio-control">
+                <div onclick="toggleFilterDropdown()" class="portfolio-control-button">
+                    <p class="portfolio-control-text">Filter</p>
+                </div>
+                <div id="filter-dropdown" class="dropdown">
+                    <div onclick="toggleFilterSubdropdown('date-subdropdown')" class="dropdown-item">
+                        <p class="dropdown-text">By date range (leave input blank to ignore)</p>
+                    </div>
+                    <div id="date-subdropdown" class="subdropdown">
+                        <div class="subdropdown-item">
+                            <p class="subdropdown-text">Start date: </p>
+                            <input class="subdropdown-input" type="date" onchange="fillField(this.value, 'start-date-input')">
+                        </div>
+                        <div class="subdropdown-item">
+                            <p class="subdropdown-text">End date: </p>
+                            <input class="subdropdown-input" type="date" onchange="fillField(this.value, 'end-date-input')">
+                        </div>
+                    </div>
+                    <div onclick="toggleFilterSubdropdown('location-subdropdown')" class="dropdown-item">
+                        <p class="dropdown-text">By location</p>
+                    </div>
+                    <div id="location-subdropdown" class="subdropdown">
+                        {% for location in locations %}
+                        <div id="{{ location.location }}" class="subdropdown-item location-item" onclick="fillField(this.id, 'location-input'); updateSelectedLocation(this.id)">
+                            <p class="subdropdown-text">{{ location.location }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="button" onclick="clickSubmitButton('portfolio-filter-submit')">Apply</div>
+                </div>
+            </div>
+            <div class="portfolio-control">
+                <div onclick="toggleSortDropdown()" class="portfolio-control-button">
+                    <p class="portfolio-control-text">Sort</p>
+                </div>
+                <div id="sort-dropdown" class="dropdown">
+                    <div class="dropdown-item" onclick="fillField('Rank', 'sort-input'); clickSubmitButton('portfolio-sort-submit')">
+                        <p class="dropdown-text">Ranked by my personal preference</p>
+                    </div>
+                    <div class="dropdown-item" onclick="fillField('Newest', 'sort-input'); clickSubmitButton('portfolio-sort-submit')">
+                        <p class="dropdown-text">Newest</p>
+                    </div>
+                    <div class="dropdown-item" onclick="fillField('Oldest', 'sort-input'); clickSubmitButton('portfolio-sort-submit')">
+                        <p class="dropdown-text">Oldest</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button" onclick="clearAllFields(); clickSubmitButton('clear-fields-submit')">Clear all filters</div>
         <div class="portfolio">
+            {% for image in images %}
             <div class="portfolio-photo-container">
-                <img src="static/Sunrise-Jog.JPG" class="portfolio-photo">
+                <img src="/static/portfolio-images/{{ image.image_name }}" class="portfolio-photo">
             </div>
-            <div class="portfolio-photo-container">
-                <img src="static/End-Of-Another-Day.jpg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/The-Shining-Sky.jpg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Distant-Chimes.jpg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Darkvision.jpg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Columns-And-Cherries.jpg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Autumn-Leaves.jpeg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Golden-Bed.jpeg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Scorching-Stalks.jpeg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Flower-City.jpeg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Rolling-Hills.jpeg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Luminance.jpeg" class="portfolio-photo">
-            </div>
-            <div class="portfolio-photo-container">
-                <img src="static/Brilliance.jpg" class="portfolio-photo">
-            </div>
+            {% endfor %}
         </div>
     </main>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+    function toggleFilterDropdown() {
+        filterDropdown = document.getElementById("filter-dropdown")
+        filterSubdropdown = document.getElementById("filter-subdropdown")
+        if (filterDropdown.style.display == "none" || filterDropdown.style.display == "") {
+            filterDropdown.style.display = "block";
+        } else {
+            filterDropdown.style.display = "none";
+        }
+        filterSubdropdown.style.display = "none";
+    }
+
+    function toggleFilterSubdropdown(id) {
+        filterSubdropdown = document.getElementById(id)
+        if (filterSubdropdown.style.display == "none" || filterSubdropdown.style.display == "") {
+            filterSubdropdown.style.display = "block";
+        } else {
+            filterSubdropdown.style.display = "none";
+        }
+    }
+
+    function toggleSortDropdown() {
+        sortDropdown = document.getElementById("sort-dropdown")
+        if (sortDropdown.style.display == "none" || sortDropdown.style.display == "") {
+            sortDropdown.style.display = "block";
+        } else {
+            sortDropdown.style.display = "none";
+        }
+    }
+
+    function fillField(value, fieldId) {
+        document.getElementById(fieldId).value = value;
+    }
+
+    function clickSubmitButton(buttonId) {
+        document.getElementById(buttonId).click();
+    }
+
+    function updateSelectedLocation(locationId) {
+        allLocations = document.getElementsByClassName("location-item");
+        for (let i = 0; i < allLocations.length; i++) {
+            if (allLocations[i].id == locationId) {
+                allLocations[i].style.backgroundColor = "#0f0";
+            } else {
+                allLocations[i].style.backgroundColor = "#ddd";
+            }
+        }
+    }
+
+    function clearAllFields() {
+        document.getElementById("start-date-input").value = "";
+        document.getElementById("end-date-input").value = "";
+        document.getElementById("location-input").value = "";
+        document.getElementById("sort-input").value = "";
+    }
+</script>
 {% endblock %}
