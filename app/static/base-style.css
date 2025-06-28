@@ -334,3 +334,7 @@ footer {
 .subdropdown-input {
     width: 50px;
 }
+
+.hidden-form {
+    display: none;
+}

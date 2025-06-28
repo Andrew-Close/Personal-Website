@@ -12,7 +12,7 @@ locations_manager = LocationsManager()
 start_date_filter = None
 end_date_filter = None
 location_filter = None
-sort = None
+sort = "Rank"
 
 @main.route("/")
 def index():
@@ -32,6 +32,7 @@ def portfolio():
     location_filtered_images = images_manager.filter_by_location(location_filter)
     filtered_images = set(date_filtered_images) & set(location_filtered_images)
     filtered_images = sorted(list(filtered_images), key=lambda image: image.date)
+    filtered_images = sort_images(filtered_images)
     all_locations = locations_manager.select_all_locations()
     return render_template("portfolio.html", images=filtered_images, locations=all_locations)
 
@@ -52,6 +53,8 @@ def set_filters():
 def set_sort():
     global sort
     sort = request.form.get("sort")
+    if sort is None:
+        sort = "Rank"
     return redirect(url_for("main.portfolio"))
 
 @main.route("/portfolio/clear-fields", methods=["POST"])
@@ -63,6 +66,17 @@ def clear_fields():
     start_date_filter = None
     end_date_filter = None
     location_filter = None
-    sort = None
-    print("Filters cleared!")
+    sort = "Rank"
     return redirect(url_for("main.portfolio"))
+
+def sort_images(images):
+    if sort is None:
+        return images
+    elif sort == "Rank":
+        return sorted(images, key=lambda image: image.rank)
+    elif sort == "Newest":
+        sorted_list = sorted(images, key=lambda image: image.date)
+        sorted_list.reverse()
+        return sorted_list
+    else:
+        return sorted(images, key=lambda image: image.date)
