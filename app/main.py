@@ -35,7 +35,7 @@ def portfolio():
     filtered_images = sorted(list(filtered_images), key=lambda image: image.date)
     filtered_images = sort_images(filtered_images)
     all_locations = locations_manager.select_all_locations()
-    return render_template("portfolio.html", images=filtered_images, locations=all_locations, filters=return_filters_display(), sort=sort)
+    return render_template("portfolio.html", images=filtered_images, locations=all_locations, filters=return_filters_display(), sort=sort, no_images=len(filtered_images)==0)
 
 @main.route("/portfolio/set-filters", methods=["POST"])
 def set_filters():

@@ -78,11 +78,15 @@
         </div>
         <div class="button" onclick="clearAllFields(); clickSubmitButton('clear-fields-submit')">Clear all filters</div>
         <div class="portfolio">
+            {% if no_images %}
+            <p>No results.</p>
+            {% else %}
             {% for image in images %}
             <div class="portfolio-photo-container">
                 <img src="/static/portfolio-images/{{ image.image_name }}" class="portfolio-photo">
             </div>
             {% endfor %}
+            {% endif %}
         </div>
     </main>
 </div>
