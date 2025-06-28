@@ -1,14 +1,15 @@
-from flask import Blueprint, render_template, request, url_for, redirect, current_app
-from flask_login import login_user, logout_user, login_required, current_user
-from PIL import Image
-from PIL.ExifTags import TAGS
-from werkzeug.security import check_password_hash
-from .extensions import db
-from .models import UserModel, ImageModel, LocationModel
-from .constants import STATIC_PATH
-from .table_managers.images_manager import ImagesManager
 import os.path
 from datetime import datetime
+
+from PIL import Image
+from PIL.ExifTags import TAGS
+from flask import Blueprint, render_template, request, url_for, redirect, session
+from flask_login import login_required
+
+from .extensions import db
+from .models import ImageModel, LocationModel
+from .table_managers.images_manager import ImagesManager
+
 
 def get_all_unstored_photos():
     image_manager = ImagesManager()
@@ -23,7 +24,6 @@ def get_all_unstored_photos():
     return all_images
 
 admin = Blueprint("admin", __name__)
-unstored_photos = []
 
 @admin.route("/admin-panel")
 @login_required
@@ -38,9 +38,8 @@ def manage_photos():
 @admin.route("/admin-panel/manage-photos/add-photos", methods=["GET", "POST"])
 @login_required
 def add_photos():
-    global unstored_photos
-    unstored_photos = get_all_unstored_photos()
-    image_name = unstored_photos[0]
+    session["unstored_photos"] = get_all_unstored_photos()
+    image_name = session["unstored_photos"][0]
     all_locations = db.session.execute(db.select(LocationModel)).scalars().all()
     if request.method == "POST":
         rank = request.form.get("rank")
@@ -63,7 +62,7 @@ def add_photos():
         image = ImageModel(image_name=image_name, rank=rank, date=date, location=location_obj)
         db.session.add(image)
         db.session.commit()
-        unstored_photos.pop(0)
+        session["unstored_photos"].pop(0)
         return redirect(url_for("admin.add_photos"))
     return render_template("add-photos.html", image_name=image_name, locations=all_locations)
 

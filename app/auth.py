@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, request, url_for, redirect
-from flask_login import login_user, logout_user, login_required, current_user
+from flask_login import login_user, logout_user, login_required
 from werkzeug.security import check_password_hash
+
 from .extensions import db
 from .models import UserModel
-from .constants import STATIC_PATH
 
 auth = Blueprint("auth", __name__)
 
