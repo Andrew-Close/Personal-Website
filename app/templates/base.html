@@ -2,20 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/base-style.css">
+    <link rel="stylesheet" href="/static/desktop-style.css">
 </head>
 <body>
-<nav>
-  <div class="nav-item">
-    <a href="/"><p class="nav-text">Home</p></a>
-  </div>
-  <div class="nav-item">
-    <a href="/server-info"><p class="nav-text">Server Info</p></a>
-  </div>
-</nav>
-<main id="content">
-{% block content %}{% endblock %}
-</main>
+    <nav>
+        <div class="nav-item">
+            <a class="nav-text" href="{{ url_for('main.index') }}">Home</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-text" href="{{ url_for('main.bio') }}">Bio</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-text" href="{{ url_for('main.projects') }}">Projects</a>
+        </div>
+        <div class="nav-item">
+            <a class="nav-text" href="{{ url_for('main.portfolio') }}">Portfolio</a>
+        </div>
+    </nav>
+        {% block content %}{% endblock %}
+    <footer>
+        <h4 class="footer-header">Links</h4>
+        <ul class="footer-list">
+            <li><a href="https://www.linkedin.com/in/andrewclose/" target="_blank">LinkedIn</a></li>
+            <li><a href="https://github.com/Andrew-Close" target="_blank">GitHub</a></li>
+        </ul>
+    </footer>
+    {% block script %}{% endblock %}
 </body>
 </html>

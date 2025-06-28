@@ -1,0 +1,12 @@
+{% extends 'admin-base.html' %}
+{% block title %}Admin Panel{% endblock %}
+{% block content %}
+<main>
+    <h1>Admin Panel</h1>
+    <div class="admin-actions-container">
+        <div class="admin-action">
+            <button onclick="window.open('{{ url_for('admin.manage_photos') }}', '_self')" class="admin-action-button">Manage Portfolio Photos</button>
+        </div>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}Bio{% endblock %}
+{% block content %}
+<div class="content">
+    <header>
+        <h1>Biography</h1>
+        <p class="header-small-text">You can read more about me below!</p>
+    </header>
+    <main>
+        <section>
+            <h2>Background</h2>
+            <p>Hey! My name is Andrew Close. I am currently 17 years old and am
+                heading into my senior year at William Mason High School. I am
+                very interested in going into Computer Science as a career, specifically
+                as a software engineer. I am also extremely passionate about photography,
+                and it is my favorite hobby, period. At school, I partake in my school’s
+                photography club. It’s a very relaxed club - I don’t have many responsibilities
+                in it. But, many photos I took during meetings have ended up in my portfolio,
+                and it has helped me practice my skills in photography. Additionally, I am also
+                involved in my school’s National STEM Honor Society chapter. In that club, I
+                learned what it’s like to work on a real life project with others.
+            </p>
+        </section>
+        <section>
+            <h2>My Skills</h2>
+            <p>At the time of writing this, I know Java and Python, and I have also practiced
+                backend frameworks built around those languages like Spring Boot and Flask.
+                I also know HTML, CSS, and JavaScript. This website wouldn’t exist without those
+                languages, of course. And even now, I am still learning more and more languages and
+                concepts.</p>
+            <p>Learning is one of my favorite pastimes! I like to spend my free time practicing my skills
+                and expanding my knowledge. I’d like to learn about more languages, like the C family
+                and possibly newer languages like Rust. I would also like to learn about other useful technologies
+                like Docker. I’ll make sure to update this website whenever I learn new languages and tools.
+            </p>
+        </section>
+        <section>
+            <h2>How I Made This Website</h2>
+            <p>In March 2025, I ended up on a team of 4 against 30 other individuals, pitted against each other in
+                spirit of the hackathon we were attending. After 8 hours of hard work, me and my team came out on top,
+                and we won the hackathon among the high school group. The reward - a mini server for each of us. At that
+                moment, I knew I had unlocked amazing new opportunities.
+            </p>
+            <p>Around the beginning of my summer break, I got to work, the end goal being to end up hosting a website
+                on my server. I had already installed Ubuntu Server on it, so then it was just a matter of installing
+                and setting up the right architecture to host the website. I bought and established my domain name
+                from Namecheap and setup DNS records to point to my home router. I setup port forwarding to forward
+                incoming requests to my server. I setup NGINX serverblocks to listen for the forwarded requests, and I
+                generated an SSL certificate with certbot. The whole process took a week, and it didn’t come without
+                confusion, troubleshooting, and staying up late a bit longer than I usually do. But inevitably, the
+                result was similar to what you are seeing right now.
+            </p>
+            <p>That’s right - this website was setup completely from scratch, starting with zero knowledge about
+                deployment. After successfully deploying a website on my server, I feel that I have gained proficiency
+                in working with Linux, DNS providers, and NGINX, among other things, and I feel confident that I
+                would be able to do it all over again, if I ever had to. The journey to creating this website was very
+                enjoyable, and it’s funny to think that it all started with winning a hackathon.
+            </p>
+        </section>
+    </main>
+</div>
+{% endblock %}
