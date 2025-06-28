@@ -9,6 +9,7 @@ from .table_managers.locations_manager import LocationsManager
 main = Blueprint("main", __name__)
 images_manager = ImagesManager()
 locations_manager = LocationsManager()
+
 start_date_filter = None
 end_date_filter = None
 location_filter = None
@@ -34,7 +35,7 @@ def portfolio():
     filtered_images = sorted(list(filtered_images), key=lambda image: image.date)
     filtered_images = sort_images(filtered_images)
     all_locations = locations_manager.select_all_locations()
-    return render_template("portfolio.html", images=filtered_images, locations=all_locations)
+    return render_template("portfolio.html", images=filtered_images, locations=all_locations, filters=return_filters_display(), sort=sort)
 
 @main.route("/portfolio/set-filters", methods=["POST"])
 def set_filters():
@@ -80,3 +81,18 @@ def sort_images(images):
         return sorted_list
     else:
         return sorted(images, key=lambda image: image.date)
+
+# Return the display that will be showm above the filter button that will show which filters are active
+def return_filters_display():
+    if start_date_filter is None and end_date_filter is None and location_filter is None:
+        return "None"
+    else:
+        filter_display = ""
+        if start_date_filter is not None:
+            filter_display += "Start Date, "
+        if end_date_filter is not None:
+            filter_display += "End Date, "
+        if location_filter is not None:
+            filter_display += "Location, "
+        # Return the whole filter display except for the trailing comma and space
+        return filter_display[:-2]

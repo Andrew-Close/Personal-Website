@@ -23,6 +23,10 @@
         <form class="hidden-form" method="POST">
             <button id="clear-fields-submit" type="submit" formaction="/portfolio/clear-fields">Submit</button>
         </form>
+        <div class="portfolio-controls-status-container">
+            <p class="portfolio-controls-status">Filter(s): {{ filters }}</p>
+            <p class="portfolio-controls-status">Sort: {{ sort }}</p>
+        </div>
         <div class="portfolio-controls-container">
             <div class="portfolio-control">
                 <div onclick="toggleFilterDropdown()" class="portfolio-control-button">

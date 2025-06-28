@@ -277,6 +277,16 @@ footer {
     font-weight: 500;
 }
 
+.portfolio-controls-status-container {
+    width: 90%;
+}
+
+.portfolio-controls-status {
+    text-align: left;
+    font-weight: bold;
+    margin: 10px;
+}
+
 .dropdown {
     display: none;
     background-color: white;
