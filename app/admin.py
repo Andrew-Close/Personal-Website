@@ -28,8 +28,6 @@ unstored_photos = []
 @admin.route("/admin-panel")
 @login_required
 def admin_panel():
-    global unstored_photos
-    unstored_photos = get_all_unstored_photos()
     return render_template("admin-panel.html")
 
 @admin.route("/admin-panel/manage-photos")
@@ -40,6 +38,8 @@ def manage_photos():
 @admin.route("/admin-panel/manage-photos/add-photos", methods=["GET", "POST"])
 @login_required
 def add_photos():
+    global unstored_photos
+    unstored_photos = get_all_unstored_photos()
     image_name = unstored_photos[0]
     all_locations = db.session.execute(db.select(LocationModel)).scalars().all()
     if request.method == "POST":
